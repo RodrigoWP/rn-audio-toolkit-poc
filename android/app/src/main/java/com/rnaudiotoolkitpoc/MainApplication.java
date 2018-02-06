@@ -3,6 +3,9 @@ package com.rnaudiotoolkitpoc;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import fm.indiecast.rnaudiostreamer.RNAudioStreamerPackage;
+import com.zmxv.RNSound.RNSoundPackage;
+import com.tanguyantoine.react.MusicControl;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -22,7 +25,10 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage()
+          new MainReactPackage(),
+            new RNAudioStreamerPackage(),
+            new RNSoundPackage(),
+            new MusicControl()
       );
     }
 

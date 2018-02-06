@@ -3567,6 +3567,18 @@ react-devtools-core@3.0.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-audio-streamer@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-audio-streamer/-/react-native-audio-streamer-0.0.9.tgz#d08f5f71ea53bc20e8520fbbf21bb695dd85d127"
+
+react-native-music-control@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-music-control/-/react-native-music-control-0.5.4.tgz#ec00236e4dccf444ccdc5f1cd003507f5d6b3feb"
+
+react-native-sound@^0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/react-native-sound/-/react-native-sound-0.10.5.tgz#50aa0f3faf4ac7cf1e54e1dc48431d0ebcc47b26"
+
 react-native@0.52.2:
   version "0.52.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.52.2.tgz#1ae9a4c4441bd6e54a8ffc8aae4ac2b5c7cccd68"
