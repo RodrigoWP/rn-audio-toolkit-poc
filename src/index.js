@@ -5,7 +5,7 @@ import audiosMock from './mock'
 export default class Main extends PureComponent {
   render () {
     return (
-      <Player audio={audiosMock[0]} />
+      <Player audio={audiosMock[1]} />
     )
   }
 }
