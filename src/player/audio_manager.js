@@ -1,30 +1,17 @@
 import Sound from 'react-native-sound'
 
-/**
- * 1º: (Primeira vez)  carrega o audio - resume o audio
- * 2º: (Sem pausar o anterior)  carrega o audio - resume o audio
- * 3º: (Pausando o audio e continuando no mesmo) paused = true - resume o audio
- * 4º: (Pausando o audio e indo pro próximo) paused = true - recarregar o audio
- */
-
 class AudioManager {
   constructor () {
     this.player = null
     this.currentAudio = null
   }
 
-  async play (url, onFinish) {
+  async play (url, onFinishCallback) {
     if (this.currentAudio !== url) {
-      onFinish()
       await this.loadSound(url)
       this.currentAudio = url
     }
-    this.resume(onFinish)
-  }
-
-  release () {
-    if (this.player === null) return
-    this.player.pause().release()
+    this.resume(onFinishCallback)
   }
 
   pause () {
@@ -32,13 +19,13 @@ class AudioManager {
     this.player.pause()
   }
 
-  resume (onFinish) {
+  resume (onFinishCallback) {
     this.player.play((success) => {
       if (!success) {
         this.player.reset()
       }
       this.release()
-      onFinish()
+      onFinishCallback()
     })
   }
 
@@ -54,6 +41,12 @@ class AudioManager {
         resolve()
       })
     })
+  }
+
+  release () {
+    if (this.player === null) return
+    this.player.pause().release()
+    this.currentAudio = null
   }
 }
 

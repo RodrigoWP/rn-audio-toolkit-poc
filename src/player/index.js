@@ -9,39 +9,37 @@ import {
 import AudioManager from './audio_manager'
 
 class Player extends PureComponent {
-  state = {
-    isPlaying: false
-  }
-
   toggle = () => {
-    const { isPlaying } = this.state
+    const { audio } = this.props
+    const { isPlaying } = audio
+
+    console.log('isPlaying: ', isPlaying)
 
     isPlaying ? this.stop() : this.play()
   }
 
   play = () => {
-    const { audio } = this.props
+    console.log('PLAY')
+    const { audio, onStartPlay } = this.props
 
-    AudioManager.play(audio.url, () => {
-      // onFinishSound()
-    })
-
-    this.setState({
-      isPlaying: true
-    })
+    onStartPlay(audio.id)
+    AudioManager.play(audio.url, this.reset)
   }
 
   stop = () => {
+    console.log('STOP')
+    this.reset()
     AudioManager.pause()
+  }
 
-    this.setState({
-      isPlaying: false
-    })
+  reset = () => {
+    const { onResetPlaylist } = this.props
+    onResetPlaylist()
   }
 
   render () {
-    const { isPlaying } = this.state
-    const { name } = this.props.audio
+    const { audio } = this.props
+    const { isPlaying, name } = audio
 
     return (
       <View style={styles.container}>
