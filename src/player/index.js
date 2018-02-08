@@ -9,22 +9,47 @@ import {
 import AudioManager from './audio_manager'
 
 class Player extends PureComponent {
+  state = {
+    isPlaying: false
+  }
+
+  toggle = () => {
+    const { isPlaying } = this.state
+
+    isPlaying ? this.stop() : this.play()
+  }
+
   play = () => {
     const { audio } = this.props
 
-    AudioManager.play(audio.url)
+    AudioManager.play(audio.url, () => {
+      // onFinishSound()
+    })
+
+    this.setState({
+      isPlaying: true
+    })
+  }
+
+  stop = () => {
+    AudioManager.pause()
+
+    this.setState({
+      isPlaying: false
+    })
   }
 
   render () {
+    const { isPlaying } = this.state
     const { name } = this.props.audio
 
     return (
       <View style={styles.container}>
         <View style={styles.line}>
           <TouchableOpacity
-            onPress={this.play}
+            onPress={this.toggle}
             style={styles.roundButton}>
-            <Text>Play</Text>
+            <Text>{isPlaying ? 'Stop' : 'Play'}</Text>
           </TouchableOpacity>
           <Text>{name}</Text>
         </View>
